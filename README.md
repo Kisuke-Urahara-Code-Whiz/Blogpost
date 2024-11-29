@@ -3,10 +3,10 @@ A simple blogpost to showcase the use of CRUD operations, Node-JS and Token Base
 
 Routes - 
 
-1. /register - GET,POST
-2. /register/otp - GET,POST
-3. /register/login - GET,POST
-4. /register/login/otp - GET,POST
+1. /login/register - GET,POST
+2. /login/register/otp - GET,POST
+3. /login - GET,POST
+4. /login/otp - GET,POST
 5. / - GET
 6. /:username - GET
 7. /:username/new - GET,POST
