@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black min-h-screen py-10">
+    <div class="container mx-auto max-w-4xl bg-white shadow-lg rounded-xl p-8">
+        <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Blog Creator</h1>
+        
+        <form id="blogForm" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Blog Title</label>
+                    <input 
+                        type="text" 
+                        id="blogTitle" 
+                        required 
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 transition"
+                    >
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Tags (comma separated)</label>
+                    <input 
+                        type="text" 
+                        id="blogTags" 
+                        placeholder="technology, AI, innovation"
+                        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 transition"
+                    >
+                </div>
+            </div>
+
+            <div id="sectionsContainer">
+                <div class="blog-section border-2 border-gray-200 rounded-lg p-4 mb-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Section Name</label>
+                            <input 
+                                type="text" 
+                                name="sectionName" 
+                                required 
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 transition"
+                            >
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Section Blog Content</label>
+                        <textarea 
+                            name="sectionContent" 
+                            rows="5" 
+                            required 
+                            class="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 transition"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center">
+                <button 
+                    type="button" 
+                    id="addSectionBtn" 
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md transition flex items-center"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                    Add Section
+                </button>
+
+                <button 
+                    type="submit" 
+                    class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition"
+                >
+                    Create Blog
+                </button>
+            </div>
+        </form>
+
+        <div id="previewArea" class="mt-8 hidden">
+            <h2 class="text-2xl font-bold mb-4 text-center">Blog Preview</h2>
+            <div id="previewContent" class="bg-gray-50 p-6 rounded-lg"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sectionsContainer = document.getElementById('sectionsContainer');
+            const addSectionBtn = document.getElementById('addSectionBtn');
+            const blogForm = document.getElementById('blogForm');
+            const previewArea = document.getElementById('previewArea');
+            const previewContent = document.getElementById('previewContent');
+
+            addSectionBtn.addEventListener('click', () => {
+                const newSection = document.querySelector('.blog-section').cloneNode(true);
+                
+                // Clear input values
+                newSection.querySelectorAll('input, textarea').forEach(input => {
+                    input.value = '';
+                });
+
+                sectionsContainer.appendChild(newSection);
+            });
+
+            blogForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const blogTitle = document.getElementById('blogTitle').value;
+                const blogTags = document.getElementById('blogTags').value;
+                const sections = document.querySelectorAll('.blog-section');
+
+                let previewHTML = `
+                    <h1 class="text-3xl font-bold mb-4">${blogTitle}</h1>
+                    <div class="mb-4 space-x-2">
+                        ${blogTags.split(',').map(tag => 
+                            `<span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">${tag.trim()}</span>`
+                        ).join('')}
+                    </div>
+                `;
+
+                sections.forEach((section, index) => {
+                    const sectionName = section.querySelector('[name="sectionName"]').value;
+                    const sectionContent = section.querySelector('[name="sectionContent"]').value;
+
+                    previewHTML += `
+                        <div class="mb-6">
+                            <h2 class="text-2xl font-semibold mb-3">${sectionName}</h2>
+                            <p>${sectionContent}</p>
+                        </div>
+                    `;
+                });
+
+                previewContent.innerHTML = previewHTML;
+                previewArea.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
