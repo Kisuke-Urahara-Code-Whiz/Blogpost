@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md">
+        <div class="bg-white rounded-2xl shadow-2xl p-8">
+            <h2 class="text-3xl font-bold text-center text-black mb-8">OTP Sent to Email</h2>
+            
+            <form class="space-y-6">
+                <div>
+                    <label for="otp" class="block text-sm font-medium text-gray-700 mb-2">Enter 6-Digit OTP</label>
+                    <div class="flex space-x-2">
+                        <input 
+                            type="text" 
+                            maxlength="1" 
+                            class="w-1/6 text-center px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+                        >
+                        <input 
+                            type="text" 
+                            maxlength="1" 
+                            class="w-1/6 text-center px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+                        >
+                        <input 
+                            type="text" 
+                            maxlength="1" 
+                            class="w-1/6 text-center px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+                        >
+                        <input 
+                            type="text" 
+                            maxlength="1" 
+                            class="w-1/6 text-center px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+                        >
+                        <input 
+                            type="text" 
+                            maxlength="1" 
+                            class="w-1/6 text-center px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+                        >
+                        <input 
+                            type="text" 
+                            maxlength="1" 
+                            class="w-1/6 text-center px-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black transition-all duration-300"
+                        >
+                    </div>
+                </div>
+                
+                <div>
+                    <button 
+                        type="submit" 
+                        class="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition-colors duration-300 font-semibold"
+                    >
+                        Verify OTP
+                    </button>
+                </div>
+            </form>
+            
+            <div class="mt-6 text-center space-y-4">
+                <p class="text-sm text-gray-600">
+                    Didn't receive the OTP? 
+                    <a href="#" class="text-black font-semibold hover:underline">Resend OTP</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
